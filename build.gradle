@@ -49,6 +49,8 @@ dependencies {
     implementation 'io.swagger:swagger-jersey2-jaxrs:1.5.23'
 
     implementation 'com.trevorism:secure-utils:1.0.2'
+    implementation 'com.auth0:mvc-auth-commons:1.1.0'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
     acceptanceImplementation 'io.cucumber:cucumber-groovy:4.7.1'
     acceptanceImplementation 'com.trevorism:http-utils:1.0.2'
@@ -57,6 +59,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+processResources{
+    doLast{
+        copy{
+            from "${System.getProperty("user.home")}/${project.name}/secrets.properties"
+            into "build/resources/main"
+        }
+    }
+}
 
 appengine {
     deploy {
