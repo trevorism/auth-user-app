@@ -70,6 +70,7 @@ class UserController {
     }
 
     private static UserInfoResponse obtainUserId(HeadersJsonHttpClient httpClient, Gson gson) {
+        //This string is obtained from login controller and put on the session (accessToken)
         String accessToken = "LZRXdRHUo5v_D2aMdR-fd995OOOpEDga"
         String json = ResponseUtils.getEntity httpClient.get("https://trevorism.auth0.com/userinfo", ["Authorization": "Bearer ${accessToken}".toString()])
         UserInfoResponse uir = gson.fromJson(json, UserInfoResponse)
